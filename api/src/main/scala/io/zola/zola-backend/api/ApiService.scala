@@ -22,30 +22,30 @@ trait ApiServiceT extends WebJsonSupportT {
 
   def actorRefFactory: ActorRefFactory
 
-  implicit val timeout       = Timeout(ZolaBackendConfig.webRequestTimeout)
+  implicit val timeout = Timeout(ZolaBackendConfig.webRequestTimeout)
 
-  private val fastBlockchain = createFastBlockchain
-  def createFastBlockchain   = actorRefFactory.actorOf(Props[Blogic]())
+  private val blogic = createBlogic
+  def createBlogic   = actorRefFactory.actorOf(Props[Blogic]())
 
   import Blogic._
   lazy val route = {
     path("add" / "review") {
-      logRequestResult("add:block", Logging.InfoLevel) {
+      logRequestResult("add:review", Logging.InfoLevel) {
         post {
           entity(as[AddReviewRequest]) { request =>
             complete(StatusCodes.Created, {
-              (fastBlockchain ? request).mapTo[AddReviewResponse]
+              (blogic ? request).mapTo[AddReviewResponse]
             })
           }
         }
       }
     } ~
     path("list" / "review") {
-      logRequestResult("find-by:index", Logging.InfoLevel) {
+      logRequestResult("list:review", Logging.InfoLevel) {
         post {
           entity(as[ListReviewRequest]) { request =>
             complete(StatusCodes.OK, {
-              (fastBlockchain ? request).mapTo[ListReviewResponse]
+              (blogic ? request).mapTo[ListReviewResponse]
             })
           }
         }

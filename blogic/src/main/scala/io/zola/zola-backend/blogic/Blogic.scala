@@ -31,7 +31,6 @@ object Blogic {
 class Blogic extends Actor with ActorLogging {
 
   import Blogic._
-  import Miner._
   def receive: Receive = {
     case req: AddReviewRequest           =>
       log.info("processing " + req)

@@ -1,7 +1,7 @@
 lazy val sharedSettings = Seq(
   organization     := "io.zola",
   version          := "0.1.0",
-  scalaVersion     := "2.12.6",
+  scalaVersion     := "2.13.13",
   resolvers    ++= Seq(
     ("Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/").withAllowInsecureProtocol(true),
     ("Confluent Maven Repository" at "http://packages.confluent.io/maven/").withAllowInsecureProtocol(true)
@@ -13,9 +13,9 @@ lazy val sharedSettings = Seq(
   ) 
 )
 
-val akkaVersion      = "2.5.18"
-val akkaHttpVersion  = "10.1.5"
-val scalaTestVersion = "3.0.5"
+val akkaVersion      = "2.8.5"
+val akkaHttpVersion  = "10.2.10"
+val scalaTestVersion = "3.2.18"
 
 lazy val core = (project in file("core")).
   settings(
@@ -34,7 +34,7 @@ lazy val core = (project in file("core")).
     )
   )
 
-lazy val zola-backend = (project in file("."))
+lazy val zola = (project in file("."))
   .aggregate(core, blogic, api)
 
 lazy val blogic = (project in file("blogic")).
@@ -50,8 +50,8 @@ lazy val api = (project in file("api")).
   settings(
     sharedSettings,
     libraryDependencies ++= Seq(
+      "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-testkit"      % akkaVersion      % Test,
-      "org.scalatest"     %% "scalatest"         % scalaTestVersion % Test,
-      "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion  % Test
+      "org.scalatest"     %% "scalatest"         % scalaTestVersion % Test
     )
   ).dependsOn(core, blogic)

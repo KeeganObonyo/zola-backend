@@ -14,3 +14,4 @@ project/project/**
 .metals/
 .bloop/
 .vscode
+.bsp

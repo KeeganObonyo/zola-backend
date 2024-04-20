@@ -1,4 +1,4 @@
-package io.zola.zola-backend.core.util
+package io.zola.zolabackend.core.util
 
 import org.apache.commons.daemon.{ Daemon, DaemonContext }
 

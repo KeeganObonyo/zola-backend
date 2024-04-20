@@ -1,4 +1,4 @@
-package io.zola.zola-backend.api
+package io.zola.zolabackend.core.api
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{ Failure, Success }

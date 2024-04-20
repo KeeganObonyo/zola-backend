@@ -1,8 +1,8 @@
-package io.zola.zola-backend.core.util
+package io.zola.zolabackend.core.util
 
 import com.typesafe.config.ConfigFactory
 
-object ZolaConfig exteZolaConfigT 
+object ZolaConfig extends ZolaConfigT 
 
 private[util] trait ZolaConfigT {
 

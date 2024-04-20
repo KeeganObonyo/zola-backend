@@ -1,4 +1,4 @@
-package zola.zola-backend.api
+package io.zola.zolabackend.core.api
 
 import scala.concurrent.ExecutionContext.Implicits.global
 

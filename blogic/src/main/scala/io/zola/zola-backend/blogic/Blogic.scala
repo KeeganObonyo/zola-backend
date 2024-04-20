@@ -1,4 +1,4 @@
-package io.zola.zola-backend.blogic
+package io.zola.zolabackend.core.blogic
 
 import akka.actor.{ Actor, ActorLogging, Props }
 import akka.pattern.ask

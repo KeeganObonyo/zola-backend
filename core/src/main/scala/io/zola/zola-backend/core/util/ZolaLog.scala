@@ -1,4 +1,4 @@
-package io.zola.zola-backend.core.util
+package io.zola.zolabackend.core.util
 
 import scala.concurrent.duration.{ Duration, FiniteDuration }
 
@@ -9,7 +9,7 @@ trait ZolaLog {
 }
 //For better printing of case classes during logging
 trait ZolaCCPrinter {
-  override def toString = AtalaUtil.getCaseClassString(this)
+  override def toString = ZolaUtil.getCaseClassString(this)
 }
 
 object ZolaUtil {

@@ -1,4 +1,4 @@
-package io.zola.zola-backend.api
+package io.zola.zolabackend.core.api
 package marshalling
 
 import akka.http.scaladsl.marshallers.sprayjson._

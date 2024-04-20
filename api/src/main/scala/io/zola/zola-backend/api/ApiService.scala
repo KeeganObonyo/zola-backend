@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.api
+package io.zola.zolabackend.api
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{ Failure, Success }
@@ -22,7 +22,7 @@ trait ApiServiceT extends WebJsonSupportT {
 
   def actorRefFactory: ActorRefFactory
 
-  implicit val timeout = Timeout(ZolaBackendConfig.webRequestTimeout)
+  implicit val timeout = Timeout(ZolaConfig.webRequestTimeout)
 
   private val blogic = createBlogic
   def createBlogic   = actorRefFactory.actorOf(Props[Blogic]())

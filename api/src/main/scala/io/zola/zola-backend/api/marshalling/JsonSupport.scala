@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.api
+package io.zola.zolabackend.api
 package marshalling
 
 import akka.http.scaladsl.marshallers.sprayjson._
@@ -7,9 +7,7 @@ import spray.json._
 
 import io.zola.zolabackend._
 
-import blogic.util._
-
-import core.util.ZolaBackendEnum._
+import core.util.ZolaEnum._
 
 import blogic.Blogic._
 
@@ -22,6 +20,8 @@ trait WebJsonSupportT extends DefaultJsonProtocol with SprayJsonSupport {
       case _ => throw new DeserializationException("Enum string expected")
     }
   }
+
+  implicit val ReviewFormat  = jsonFormat1(Review)
 
   implicit val AddReviewRequestFormat  = jsonFormat1(AddReviewRequest)
   implicit val AddReviewResponseFormat = jsonFormat2(AddReviewResponse)

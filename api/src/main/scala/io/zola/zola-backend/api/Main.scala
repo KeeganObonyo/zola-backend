@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.api
+package io.zola.zolabackend.api
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -11,7 +11,7 @@ import io.zola.zolabackend._
 
 import core.util.{ ZolaConfig, ZolaLog, ApplicationLifecycle }
 
-class Application extends ApplicationLifecycle with ZolaBackendLog {
+class Application extends ApplicationLifecycle with ZolaLog {
 
   private[this] var started: Boolean = false
 
@@ -29,8 +29,8 @@ class Application extends ApplicationLifecycle with ZolaBackendLog {
         new ApiServiceT {
           override def actorRefFactory = actorSystem
         }.route,
-        ZolaBackendConfig.apiInterface,
-        ZolaBackendConfig.apiPort
+        ZolaConfig.apiInterface,
+        ZolaConfig.apiPort
       )
       started = true
     }

@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.api
+package io.zola.zolabackend.api
 
 import io.zola.zolabackend._
 

@@ -3,7 +3,7 @@ package io.zola.zolabackend.core.blogic
 import akka.actor.{ Actor, ActorLogging, Props }
 import akka.pattern.ask
 
-import io.zola.zola-backend._
+import io.zola.zolabackend._
 
 import core.util.{ ZolaEnum, ZolaCCPrinter }
 import ZolaEnum.ServiceStatus
@@ -55,7 +55,7 @@ class Blogic extends Actor with ActorLogging {
         currentSender ! ListReviewResponse(
           Some(List(Review("Good Stuff")),
           ServiceStatus.Success
-        )
+        ))
       } catch {
         case ex: Throwable =>
           currentSender ! ListReviewResponse(

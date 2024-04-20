@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.blogic
+package io.zola.zolabackend.blogic
 
 import akka.actor.{ Actor, ActorLogging, Props }
 import akka.pattern.ask
@@ -9,13 +9,16 @@ import core.util.{ ZolaEnum, ZolaCCPrinter }
 import ZolaEnum.ServiceStatus
 
 import util._
+import scala.languageFeature.existentials
 
 object Blogic {
-
-    case class AddReviewRequest(
-      reviews: Seq[Review]
+    case class Review(
+      text: String
     ) extends ZolaCCPrinter
-    case class AddBlockResponse(
+    case class AddReviewRequest(
+      reviews: Review
+    ) extends ZolaCCPrinter
+    case class AddReviewResponse(
       response: String,
       status: ServiceStatus.Value
     ) extends ZolaCCPrinter
@@ -23,7 +26,7 @@ object Blogic {
       index: Int
     ) extends ZolaCCPrinter
     case class ListReviewResponse(
-      block: Option[List[Review]],
+      reviews: Option[List[Review]],
       status: ServiceStatus.Value
     ) extends ZolaCCPrinter
 }
@@ -36,14 +39,13 @@ class Blogic extends Actor with ActorLogging {
       log.info("processing " + req)
       val currentSender = sender()
       try {
-        append(req.reviews)
-        currentSender ! AddBlockResponse(
+        currentSender ! AddReviewResponse(
           "Transactions appended successfully",
           ServiceStatus.Success
         )
       } catch {
         case ex: Throwable =>
-          currentSender ! AddBlockResponse(
+          currentSender ! AddReviewResponse(
             "Error appending transactions",
             ServiceStatus.Failed
           )
@@ -53,9 +55,9 @@ class Blogic extends Actor with ActorLogging {
       val currentSender = sender()
       try {
         currentSender ! ListReviewResponse(
-          Some(List(Review("Good Stuff")),
+          Some(List(Review("Good Stuff"))),
           ServiceStatus.Success
-        ))
+        )
       } catch {
         case ex: Throwable =>
           currentSender ! ListReviewResponse(

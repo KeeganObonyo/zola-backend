@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.blogic
+package io.zola.zolabackend.blogic
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -6,7 +6,7 @@ import scala.language.postfixOps
 import akka.actor.Props
 import akka.testkit.TestProbe
 
-import io.iohk.atala._
+import io.zola.zolabackend._
 
 import core.util.ZolaEnum._
 
@@ -14,7 +14,11 @@ import test._
 
 import util._
 
-class BlogicSpec extends TestServBlogic = system.actorOf(Props(new Blogic{
+import Blogic._
+
+class BlogicSpec extends TestServiceT {
+
+  blogic = system.actorOf(Props(new Blogic{
     override def append(reviews: Seq[Review]): String = "Reviews appended successfully"
   }))
 

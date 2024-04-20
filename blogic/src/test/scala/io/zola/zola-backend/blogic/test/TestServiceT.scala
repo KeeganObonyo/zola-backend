@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.blogic
+package io.zola.zolabackend.blogic
 package test
 
 import akka.actor.ActorSystem

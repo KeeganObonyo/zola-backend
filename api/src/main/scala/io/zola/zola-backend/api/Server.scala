@@ -1,6 +1,6 @@
 package io.zola.zolabackend.core.api
 
-import io.zola.zola-backend._
+import io.zola.zolabackend._
 
 import core.util.{ AbstractApplicationDaemon, ZolaApplicationT }
 

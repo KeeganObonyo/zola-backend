@@ -1,4 +1,4 @@
-package io.zola.zola-backend.api
+package io.zola.zolabackend.api
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -14,7 +14,7 @@ import org.scalatest.{ Matchers, WordSpec }
 
 import spray.json._
 
-import io.zola.zola-backend._
+import io.zola.zolabackend._
 
 import marshalling._
 

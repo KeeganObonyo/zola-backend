@@ -7,7 +7,7 @@ import akka.http.scaladsl.Http
 import akka.io.IO
 import akka.stream.ActorMaterializer
 
-import io.zola.zola-backend._
+import io.zola.zolabackend._
 
 import core.util.{ ZolaConfig, ZolaLog, ApplicationLifecycle }
 

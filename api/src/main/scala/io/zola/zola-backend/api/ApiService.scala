@@ -10,7 +10,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import akka.util.Timeout
 
-import io.zola.zola-backend._
+import io.zola.zolabackend._
 
 import core.util.ZolaConfig
 

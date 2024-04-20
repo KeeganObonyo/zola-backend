@@ -5,7 +5,7 @@ import akka.http.scaladsl.marshallers.sprayjson._
 
 import spray.json._
 
-import io.zola.zola-backend._
+import io.zola.zolabackend._
 
 import blogic.util._
 

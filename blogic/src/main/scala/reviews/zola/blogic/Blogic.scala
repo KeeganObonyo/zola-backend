@@ -40,7 +40,7 @@ class Blogic extends Actor with ActorLogging {
       val currentSender = sender()
       try {
         currentSender ! AddReviewResponse(
-          "Transactions appended successfully",
+          "Reviews appended successfully",
           ServiceStatus.Success
         )
       } catch {

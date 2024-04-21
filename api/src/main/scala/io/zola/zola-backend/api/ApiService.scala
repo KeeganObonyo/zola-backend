@@ -1,4 +1,4 @@
-package io.zola.zolabackend.api
+package reviews.zola.api
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.{ Failure, Success }
@@ -10,7 +10,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import akka.util.Timeout
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import core.util.ZolaConfig
 

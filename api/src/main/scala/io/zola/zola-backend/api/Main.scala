@@ -1,4 +1,4 @@
-package io.zola.zolabackend.api
+package reviews.zola.api
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -7,7 +7,7 @@ import akka.http.scaladsl.Http
 import akka.io.IO
 import akka.stream.ActorMaterializer
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import core.util.{ ZolaConfig, ZolaLog, ApplicationLifecycle }
 

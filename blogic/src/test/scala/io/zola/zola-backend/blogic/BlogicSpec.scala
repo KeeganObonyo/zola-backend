@@ -1,4 +1,4 @@
-package io.zola.zolabackend.blogic
+package reviews.zola.blogic
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -12,7 +12,7 @@ import akka.testkit.{ ImplicitSender, TestKit }
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.BeforeAndAfterAll
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import core.util.ZolaEnum._
 

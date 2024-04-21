@@ -1,6 +1,6 @@
-package io.zola.zolabackend.api
+package reviews.zola.api
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import core.util.{ AbstractApplicationDaemon, ZolaApplicationT }
 
@@ -9,5 +9,5 @@ class ApplicationDaemon extends AbstractApplicationDaemon {
 }
 
 object ServiceApplication extends App with ZolaApplicationT[ApplicationDaemon] {
-  def createApplication = new ApplicationDaemon
+  def createApplication = new ApplicationDaemon()
 }

@@ -1,11 +1,11 @@
-package io.zola.zolabackend.api
+package reviews.zola.api
 package marshalling
 
 import akka.http.scaladsl.marshallers.sprayjson._
 
 import spray.json._
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import core.util.ZolaEnum._
 

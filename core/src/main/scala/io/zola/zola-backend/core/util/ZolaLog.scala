@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.util
+package reviews.zola.core.util
 
 import scala.concurrent.duration.{ Duration, FiniteDuration }
 

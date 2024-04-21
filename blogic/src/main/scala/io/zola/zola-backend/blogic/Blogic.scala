@@ -1,9 +1,9 @@
-package io.zola.zolabackend.blogic
+package reviews.zola.blogic
 
 import akka.actor.{ Actor, ActorLogging, Props }
 import akka.pattern.ask
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import core.util.{ ZolaEnum, ZolaCCPrinter }
 import ZolaEnum.ServiceStatus

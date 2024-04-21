@@ -1,4 +1,4 @@
-package io.zola.zolabackend.core.util
+package reviews.zola.core.util
 
 object ZolaEnum { 
   object ServiceStatus extends Enumeration {

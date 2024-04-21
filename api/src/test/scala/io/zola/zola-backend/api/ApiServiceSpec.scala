@@ -1,8 +1,7 @@
-package io.zola.zolabackend.api
+package reviews.zola.api
 
 import scala.concurrent.duration._
 import scala.language.postfixOps
-
 
 import akka.http.scaladsl.model._
 import StatusCodes._
@@ -14,7 +13,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 import spray.json._
 
-import io.zola.zolabackend._
+import reviews.zola._
 
 import marshalling._
 

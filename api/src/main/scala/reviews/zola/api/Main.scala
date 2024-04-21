@@ -25,13 +25,13 @@ class Application extends ApplicationLifecycle with ZolaLog {
     if (!started) {
 
       implicit val materializer = ActorMaterializer()
-      Http().bindAndHandle(
-        new ApiServiceT {
-          override def actorRefFactory = actorSystem
-        }.route,
+      Http().newServerAt(
         ZolaConfig.apiInterface,
         ZolaConfig.apiPort
-      )
+      ).bind(
+          new ApiServiceT {
+          override def actorRefFactory = actorSystem
+        }.route)
       started = true
     }
   }

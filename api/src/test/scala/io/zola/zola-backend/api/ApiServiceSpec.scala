@@ -10,7 +10,7 @@ import akka.http.scaladsl.testkit.{ RouteTestTimeout, ScalatestRouteTest }
 import akka.http.scaladsl.server._
 import Directives._
 
-import org.scalatest.{ Matchers, WordSpec }
+import org.scalatest.wordspec.AnyWordSpec
 
 import spray.json._
 
@@ -18,32 +18,34 @@ import io.zola.zolabackend._
 
 import marshalling._
 
-class ApiServiceSpec extends WordSpec
-    with Matchers
+class ApiServiceSpec extends AnyWordSpec
     with ScalatestRouteTest
     with ApiServiceT
 {
   def actorRefFactory  = system
 
-  implicit val routeTestTimeout = RouteTestTimeout(FiniteDuration(10, "seconds"))
+  val routeTestTimeout = RouteTestTimeout(FiniteDuration(10, "seconds"))
 
   Thread.sleep(3000)
 
-  "ApiService" should {
-
-    "Reject an empty POST request" in {
+  "ApiService" when {
+    "given an empty POST request" should {
+      "Reject and give a response" in {
         Post("/add/review", HttpEntity(ContentType(MediaTypes.`application/json`), """{}""".toJson.toString)) ~> Route.seal(route) ~> check {
-        status shouldEqual BadRequest
+        assert(status === BadRequest)
         val res = responseAs[String]
-        assert(res.contains("""Object expected in field 'transactions'"""))
+        assert(res.contains("""Object expected in field 'reviews'"""))
         }
+      }
     }
-    "Reject POST request with an invalid parameter" in {
+    "given a post with an invalid parameter" should {
+      "Reject and give a response" in {
         Post("/add/review", HttpEntity(ContentType(MediaTypes.`application/json`), """{}""".toJson.toString)) ~> Route.seal(route) ~> check {
-        status shouldEqual BadRequest
+        assert(status === BadRequest)
         val res = responseAs[String]
-        assert(res.contains("""Object expected in field 'transactions'"""))
+        assert(res.contains("""Object expected in field 'reviews'"""))
         }
+      }
     }
   }
 }

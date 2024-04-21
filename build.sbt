@@ -30,7 +30,8 @@ lazy val core = (project in file("core")).
       "ch.qos.logback"                %  "logback-core"         % "1.2.1",
       "ch.qos.logback"                %  "logback-classic"      % "1.2.1",
       "com.typesafe.akka"             %% "akka-testkit"         % akkaVersion      % Test,
-      "org.scalatest"                 %% "scalatest"            % scalaTestVersion % Test
+      "org.scalatest"                 %% "scalatest"            % scalaTestVersion % Test,
+      "org.scalatest"                 %% "scalatest-wordspec"   % scalaTestVersion % Test
     )
   )
 
@@ -41,8 +42,9 @@ lazy val blogic = (project in file("blogic")).
   settings(
     sharedSettings,
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-testkit" % akkaVersion      % Test,
-      "org.scalatest"     %% "scalatest"    % scalaTestVersion % Test
+      "com.typesafe.akka" %% "akka-testkit"         % akkaVersion      % Test,
+      "org.scalatest"     %% "scalatest"            % scalaTestVersion % Test,
+      "org.scalatest"     %% "scalatest-wordspec"   % scalaTestVersion % Test
     )
   ).dependsOn(core)
 
@@ -50,8 +52,9 @@ lazy val api = (project in file("api")).
   settings(
     sharedSettings,
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion,
-      "com.typesafe.akka" %% "akka-testkit"      % akkaVersion      % Test,
-      "org.scalatest"     %% "scalatest"         % scalaTestVersion % Test
+      "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-testkit"         % akkaVersion      % Test,
+      "org.scalatest"     %% "scalatest"            % scalaTestVersion % Test,
+      "org.scalatest"     %% "scalatest-wordspec"   % scalaTestVersion % Test
     )
   ).dependsOn(core, blogic)

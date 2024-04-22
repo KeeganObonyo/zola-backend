@@ -16,7 +16,7 @@ CREATE TABLE `user` (
   `first_name` varchar(32) NOT NULL,
   `last_name` varchar(32) NOT NULL,
   `business_name` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `text` varchar(32) NOT NULL,
   `place_id` varchar(32) NOT NULL,
   `api_key` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
@@ -36,5 +36,19 @@ CREATE TABLE `card_holder` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `api_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `api_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `username` varchar(32) NOT NULL,
+  `api_key` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `username` (`username`) 
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

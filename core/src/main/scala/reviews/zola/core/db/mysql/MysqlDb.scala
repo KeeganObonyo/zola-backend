@@ -1,17 +1,30 @@
 package reviews.zola.core
 package db.mysql
 
+import java.util. Properties
+import java.sql.{Connection, DriverManager, Statement, ResultSet}
+
 import scalikejdbc._
 import org.joda.time.{LocalDate, DateTime}
+
+import reviews.zola._
+
+import core.util.{ ZolaSecureCCPrinter, ZolaConfig }
+
+import scalikejdbc._
 
 case class APIUser(
   id: Int,
   username: String,
-  apikey: String) {
-}
+  apikey: String) extends ZolaSecureCCPrinter {
+    override def getSecureFields = Set("apikey")
+  }
 
 //Im the implementation. We only read the SQL tables for the Authentication.
 object APIUser extends SQLSyntaxSupport[APIUser] {
+
+    Class.forName(ZolaConfig.mysqlDriver)
+    val dbc: Connection = DriverManager.getConnection(ZolaConfig.mysqlDbUrl, ZolaConfig.mysqlDbUser, ZolaConfig.mysqlDbPass)
 
   override val tableName = "api_user"
 

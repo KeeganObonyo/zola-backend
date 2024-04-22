@@ -31,13 +31,10 @@ val config = ConfigFactory.load
   val serviceTimeout    = ZolaUtil.parseFiniteDuration(config.getString("zola-backend.actor-timeout.service")).get
   val webRequestTimeout = ZolaUtil.parseFiniteDuration(config.getString("zola-backend.actor-timeout.web-request")).get
 
-  val mysqlDbAuthenticationCacheUpdateFrequency = ZolaUtil.parseFiniteDuration(config.getString("zola.db.mysql.cache.update-frequency.authentication")).get
-
-  val mysqlDbHost  = config.getString("zola.db.mysql.host")
-  val mysqlDbPort  = config.getInt("zola.db.mysql.port")
-  val mysqlDbUser  = config.getString("zola.db.mysql.user")
-  val mysqlDbPass  = config.getString("zola.db.mysql.pass")
-  val mysqlDbName  = config.getString("zola.db.mysql.name")
+  val mysqlDbUrl   = config.getString("zola.db.default.url")
+  val mysqlDriver  = config.getString("zola.db.default.driver")
+  val mysqlDbUser  = config.getString("zola.db.default.user")
+  val mysqlDbPass  = config.getString("zola.db.default.pass")
 
   val mysqlDbPoolMaxObjects   = config.getInt("zola.db.mysql.pool.max-objects")
   val mysqlDbPoolMaxIdle      = config.getInt("zola.db.mysql.pool.max-idle")

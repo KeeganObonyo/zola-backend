@@ -1,5 +1,5 @@
 package reviews.zola.core
-package db.mysql.service
+package db.mysql
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -11,14 +11,6 @@ import reviews.zola._
 import core.util.ZolaSecureCCPrinter
 
 object ZolaMysqlDbService {
-
-  case class UserDbEntry (
-    id: Int,
-    username: String,
-    apikey: String
-  ) extends ZolaSecureCCPrinter {
-    override def getSecureFields = Set("apikey")
-  }
   case object UserFetchDbQuery
 
 }
@@ -28,8 +20,7 @@ class ZolaMysqlDbService extends Actor
 
   import ZolaMysqlDbService._
   def receive = {
-
     case UserFetchDbQuery =>
+      sender() ! APIUser.findAll()
   }
-
 }

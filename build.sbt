@@ -13,6 +13,9 @@ lazy val sharedSettings = Seq(
   ) 
 )
 
+lazy val zola = (project in file("."))
+  .aggregate(core, blogic, api)
+
 val akkaVersion      = "2.8.5"
 val akkaHttpVersion  = "10.2.10"
 val scalaTestVersion = "3.2.18"
@@ -38,9 +41,6 @@ lazy val core = (project in file("core")).
       "org.scalatest"                 %% "scalatest-wordspec"       % scalaTestVersion % Test
     )
   )
-
-lazy val zola = (project in file("."))
-  .aggregate(core, blogic, api)
 
 lazy val blogic = (project in file("blogic")).
   settings(

@@ -12,13 +12,15 @@ import akka.util.Timeout
 
 import reviews.zola._
 
-import core.util.ZolaConfig
+import core.util.{ ZolaConfig, ZolaCoreServiceT }
 
 import blogic.Blogic
 
 import marshalling._
 
-trait ApiServiceT extends WebJsonSupportT {
+trait ApiServiceT extends WebJsonSupportT
+  with ZolaCoreServiceT
+  with UserAuthenticationDirectiveT {
 
   def actorRefFactory: ActorRefFactory
 

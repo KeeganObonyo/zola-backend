@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS elmer WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+CREATE KEYSPACE IF NOT EXISTS zola WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
 
 USE zola;
 

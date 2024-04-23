@@ -1,5 +1,6 @@
 package reviews.zola.core.util
 
+import scala.collection.JavaConverters._
 import com.typesafe.config.ConfigFactory
 
 import ZolaEnum._
@@ -37,4 +38,12 @@ val config = ConfigFactory.load
   val mysqlDriver  = config.getString("zola.db.default.driver")
   val mysqlDbUser  = config.getString("zola.db.default.user")
   val mysqlDbPass  = config.getString("zola.db.default.pass")
+
+    // db 
+  // Cassandra
+  val cassandraUsername      = config.getString("zola.db.cassandra.username")
+  val cassandraPassword      = config.getString("zola.db.cassandra.password")
+  val cassandraHosts         = config.getStringList("zola.db.cassandra.hosts").asScala.toList
+  val cassandraPort          = config.getInt("zola.db.cassandra.port")
+  val cassandraKeySpace      = config.getString("zola.db.cassandra.key-space")
 }

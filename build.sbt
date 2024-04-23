@@ -1,7 +1,7 @@
 lazy val sharedSettings = Seq(
   organization     := "io.zola",
   version          := "0.1.0",
-  scalaVersion     := "2.13.13",
+  scalaVersion     := "2.12.19",
   resolvers    ++= Seq(
     ("Typesafe repository releases" at "http://repo.typesafe.com/typesafe/releases/").withAllowInsecureProtocol(true),
     ("Confluent Maven Repository" at "http://packages.confluent.io/maven/").withAllowInsecureProtocol(true)
@@ -10,7 +10,7 @@ lazy val sharedSettings = Seq(
     "-deprecation",
     "-feature",
     "-unchecked"
-  ) 
+  ),
 )
 
 lazy val zola = (project in file("."))
@@ -28,18 +28,21 @@ lazy val core = (project in file("core")).
       "com.typesafe.akka"             %% "akka-stream"              % akkaVersion,
       "com.typesafe.akka"             %% "akka-http-spray-json"     % akkaHttpVersion,
       "com.typesafe.akka"             %% "akka-slf4j"               % akkaVersion,
+      "commons-codec"                 %  "commons-codec"            % "1.16.1",
       "commons-daemon"                %  "commons-daemon"           % "1.3.4",
-      "org.slf4j"                       %  "slf4j-simple"                 % "2.0.9",
-      "org.scalikejdbc"               %% "scalikejdbc-async"        % "0.19.+",
+      "org.slf4j"                     %  "slf4j-simple"             % "2.0.9",
+      "org.scalikejdbc"               %% "scalikejdbc-async"        % "0.14.0",
       "org.scalikejdbc"               %% "scalikejdbc-test"         % "4.2.1"   % "test",
       "org.scalikejdbc"               %% "scalikejdbc-config"       % "4.2.1",
       "com.github.jasync-sql"         %  "jasync-mysql"             % "2.2.+",
+      "com.outworkers"                %% "phantom-dsl"              % "2.29.0",
+      "com.outworkers"                %% "phantom-streams"          % "2.29.0",
       "joda-time"                     %  "joda-time"                % "2.10.2", 
       "org.joda"                      %  "joda-convert"             % "2.2.1",
       "com.typesafe.akka"             %% "akka-testkit"             % akkaVersion      % Test,
       "org.scalatest"                 %% "scalatest"                % scalaTestVersion % Test,
       "org.scalatest"                 %% "scalatest-wordspec"       % scalaTestVersion % Test
-    )
+    ),
   )
 
 lazy val blogic = (project in file("blogic")).

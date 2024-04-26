@@ -4,6 +4,7 @@
 # Compile results
 target/**
 project/project/**
+project/**
 *pyc
 
 **/target/**

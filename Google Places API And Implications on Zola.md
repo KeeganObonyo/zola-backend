@@ -20,9 +20,9 @@ Find Place API Response:
 Find Place Detail API Request: we can add different paramas to return. Simple for now.
 
 https://maps.googleapis.com/maps/api/place/details/json
-  ?fields=name%2Crating%2Cformatted_phone_number 
-  &place_id=ChIJ68aBlEKuEmsRHUA9oME5Zh0
-  &key=YOUR_API_KEY
+?fields=name%2Crating%2Creviews&reviews_sort=newest
+&place_id=ChIJdbRVtrQWLxgRNV68z2IR5tw
+&key=YOUR_API_KEY
 
 Find Place Detail API Response:
 
@@ -43,50 +43,6 @@ Find Place Detail API Response:
                 "relative_time_description": "in the last week",
                 "text": "I have visited the MCA over many years and always enjoyed the exhibitions.  It's relaxing and informative in a creative environment.",
                 "time": 1714122140,
-                "translated": false
-            },
-            {
-                "author_name": "Md. Yaqub Ali",
-                "author_url": "https://www.google.com/maps/contrib/118373787968876721608/reviews",
-                "language": "en",
-                "original_language": "en",
-                "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjX2g_uDfGFiLPn4l2Q77MsTNUq3q-1UdpPy3ABHTwGbS6scBDXYCg=s128-c0x00000000-cc-rp-mo-ba6",
-                "rating": 5,
-                "relative_time_description": "in the last week",
-                "text": "It’s nice place to explore the colour of life. Take your time to watch each painting and audiovisual. You will be amazed. The cafe on the top floor has the best view of Harbour bridge and Opera House. Take some food and pass some memorable time with your friends and family. The shop on level 1 has various types of gifts.",
-                "time": 1714118662,
-                "translated": false
-            },
-            {
-                "author_name": "Gabriele Krietemeyer",
-                "author_url": "https://www.google.com/maps/contrib/103702604211975492296/reviews",
-                "language": "de",
-                "original_language": "de",
-                "profile_photo_url": "https://lh3.googleusercontent.com/a/ACg8ocJ0W9Jb79J91ELMNG-k2jf465mtCxB8VW3-1d1opY8Jm-8_JQ=s128-c0x00000000-cc-rp-mo-ba5",
-                "rating": 4,
-                "relative_time_description": "in the last week",
-                "text": "Wir hatten uns nicht so viel Zeit genommen, wie dieses Museum verdient hat. Viele Video- Installationen, vieles, das zum Nachdenken anregt, aber auch viel für Kinder.\nUnd ein schönes Rooftop Café! Gerne hingehen!!",
-                "time": 1714083377,
-                "translated": false
-            },
-            {
-                "author_name": "Hugh",
-                "author_url": "https://www.google.com/maps/contrib/112359037941093879882/reviews",
-                "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjViIShzdlQ_1JUbKmqIed0iJSu5Bv6lgt0FKc8Gmv5GBACNics=s128-c0x00000000-cc-rp-mo-ba3",
-                "rating": 5,
-                "relative_time_description": "in the last week",
-                "text": "",
-                "time": 1713999924,
-                "translated": false
-            },
-            {
-                "author_name": "Rob Gibson",
-                "author_url": "https://www.google.com/maps/contrib/110243788243622438190/reviews",
-                "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjWedFC97HIMWaMTEgU7VLZnK1beqmiQhk4PrfkOGKNk6V92knVG=s128-c0x00000000-cc-rp-mo-ba2",
-                "rating": 3,
-                "relative_time_description": "in the last week",
-                "text": "",
-                "time": 1713996558,
                 "translated": false
             }
         ]

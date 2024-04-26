@@ -22,17 +22,6 @@ import core.db.cassandra.ZolaCassandraDb
 import core.db.cassandra.mapper.UserReviewMapper
 
 object UserReviewCassandraDbService {
-  case class UserReviewCreateDbQuery(
-    userId: Int,
-    transactionId: String,
-    insertionTime: DateTime,
-    rating: Int,
-    businessName: String,
-    callback: Option[String],
-    textInfo: String,
-    authorName: String
-  )extends ZolaCCPrinter
-
   case class UserReviewDbEntry(
     userId: Int,
     transactionId: String,
@@ -44,17 +33,27 @@ object UserReviewCassandraDbService {
     authorName: String
   )extends ZolaCCPrinter
 
+  case class UserReviewCreateDbQuery(
+    userId: Int,
+    transactionId: String,
+    insertionTime: DateTime,
+    rating: Int,
+    businessName: String,
+    callback: Option[String],
+    textInfo: String,
+    authorName: String
+  )extends ZolaCCPrinter
   case class UserReviewFetchDbQuery(
     userId: Int,
     start: Option[Int],
     limit: Int,
-    rating: Option[String] = None,
+    rating: Option[Int] = None,
     businessName: Option[String] = None,
     authorName: Option[String] = None
   ) extends ZolaCCPrinter
 }
 
-class UserReviewCassandraDbService extends Actor
+abstract class UserReviewCassandraDbService extends Actor
     with ActorLogging {
 
   import UserReviewCassandraDbService._
@@ -83,6 +82,6 @@ class UserReviewCassandraDbService extends Actor
       UserReviewMapper.fetchByBusinessName(userId, businessName, start, limit).mapTo[Iterator[UserReviewDbEntry]] pipeTo sender
 
     case UserReviewFetchDbQuery(userId, start, limit, None, None, Some(authorName)) =>
-      UserReviewMapper.fetchByauthorName(userId, authorName, start, limit).mapTo[Iterator[UserReviewDbEntry]] pipeTo sender
+      UserReviewMapper.fetchByAuthorName(userId, authorName, start, limit).mapTo[Iterator[UserReviewDbEntry]] pipeTo sender
   }
 }

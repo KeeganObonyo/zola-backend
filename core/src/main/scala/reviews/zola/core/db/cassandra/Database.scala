@@ -10,5 +10,5 @@ private[cassandra] object ZolaCassandraDb extends ZolaCassandraDb(ZolaCassandraD
 
 private[cassandra] sealed class ZolaCassandraDb(override val connector: CassandraConnection) extends Database[ZolaCassandraDb](connector) {
 
-  object UserReviewtMapper extends UserReviewMapper with connector.Connector
+  object UserReviewMapper extends UserReviewMapper with connector.Connector
 }

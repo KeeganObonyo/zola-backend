@@ -5,7 +5,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.io.IO
-import akka.stream.ActorMaterializer
+import akka.stream.Materializer
 
 import reviews.zola._
 
@@ -23,8 +23,7 @@ class Application extends ApplicationLifecycle with ZolaLog {
     log.info(s"Starting $applicationName Service")
 
     if (!started) {
-
-      implicit val materializer = ActorMaterializer()
+      implicit val Mat: Materializer = Materializer(actorSystem)
       Http().newServerAt(
         ZolaConfig.apiInterface,
         ZolaConfig.apiPort

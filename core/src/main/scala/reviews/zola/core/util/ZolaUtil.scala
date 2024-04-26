@@ -3,6 +3,11 @@ package reviews.zola.core.util
 import java.net.{ URL, URLEncoder }
 import java.security.MessageDigest
 
+import java.util.Date
+import java.text.SimpleDateFormat
+
+import org.joda.time.DateTime
+
 import scala.concurrent.duration.{ Duration, FiniteDuration, MILLISECONDS }
 
 object ZolaUtil {
@@ -39,6 +44,11 @@ object ZolaUtil {
     } catch {
       case ex: NumberFormatException => None
     }
+  }
+
+  def epochToDate(epochMillis: Long): DateTime = {
+    val df:SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd")
+    DateTime.parse(df.format(epochMillis))
   }
 
   def sha256Hash(value: String): String = MessageDigest.getInstance("SHA-256").digest(value.getBytes).map("%02x".format(_)).mkString

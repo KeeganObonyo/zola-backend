@@ -29,7 +29,7 @@ object UserReviewCassandraDbService {
     rating: Int,
     businessName: String,
     callback: Option[String],
-    textInfo: String,
+    textInfo: Option[String],
     authorName: String
   )extends ZolaCCPrinter
 
@@ -40,7 +40,7 @@ object UserReviewCassandraDbService {
     rating: Int,
     businessName: String,
     callback: Option[String],
-    textInfo: String,
+    textInfo: Option[String],
     authorName: String
   )extends ZolaCCPrinter
   case class UserReviewFetchDbQuery(

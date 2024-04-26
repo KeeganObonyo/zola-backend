@@ -46,4 +46,9 @@ val config = ConfigFactory.load
   val cassandraHosts         = config.getStringList("zola.db.cassandra.hosts").asScala.toList
   val cassandraPort          = config.getInt("zola.db.cassandra.port")
   val cassandraKeySpace      = config.getString("zola.db.cassandra.key-space")
+
+  //Google Places
+  val googlePlacesFindUrl   = config.getString("zola.googleplaces.api.place.url")
+  val googlePlacesDetailUrl = config.getString("zola.googleplaces.api.detail.url")
+  val googlePlacesAPIKey    = config.getString("zola.googleplaces.api.key")
 }

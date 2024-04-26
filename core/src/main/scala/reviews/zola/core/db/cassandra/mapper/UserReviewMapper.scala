@@ -33,7 +33,7 @@ private[cassandra] abstract class UserReviewMapper extends Table[UserReviewMappe
   object rating extends IntColumn with Index
   object business_name extends StringColumn  with Index
   object callback extends OptionalStringColumn
-  object text_info extends StringColumn
+  object text_info extends OptionalStringColumn
   object author_name extends StringColumn with Index
 
   override def tableName = "user_review"
@@ -49,7 +49,10 @@ private[cassandra] abstract class UserReviewMapper extends Table[UserReviewMappe
         case Some(x) => Some(x.toString)
         case None    => None
       },
-      textInfo      = text_info(row),
+      textInfo      = text_info(row) match {
+        case Some(x) => Some(x.toString)
+        case None    => None
+      },
       authorName    = author_name(row)
     )
   }
@@ -119,7 +122,7 @@ private[cassandra] abstract class UserReviewMapper extends Table[UserReviewMappe
     rating: Int,
     businessName: String,
     callback: Option[String],
-    textInfo: String,
+    textInfo: Option[String],
     authorName: String
   ): Future[ResultSet] = {
     insertRecordImpl(
@@ -133,7 +136,10 @@ private[cassandra] abstract class UserReviewMapper extends Table[UserReviewMappe
           case Some(x) => Some(x.toString)
           case None    => None
         })
-        .value(_.text_info, textInfo)
+        .value(_.text_info, textInfo match {
+          case Some(x) => Some(x.toString)
+          case None    => None
+        })
         .value(_.author_name, authorName)
     )
   }

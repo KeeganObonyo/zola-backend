@@ -19,7 +19,6 @@ import core.db.cassandra.CassandraDbQueryResult
 object Blogic {
     case class AddReviewRequest(
       userId: Int,
-      insertionTime: DateTime,
       rating: Int,
       businessName: String,
       callback: Option[String],
@@ -27,7 +26,7 @@ object Blogic {
       authorName: String
     ) extends ZolaCCPrinter
     case class AddReviewResponse(
-      response: String,
+      description: String,
       status: ServiceStatus.Value
     ) extends ZolaCCPrinter
     case class ListReviewRequest(

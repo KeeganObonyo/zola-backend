@@ -14,10 +14,10 @@ import blogic.Blogic._
 trait WebJsonSupportT extends DefaultJsonProtocol with SprayJsonSupport {
   import ZolaJsonProtocol._
 
-  implicit val AddReviewRequestFormat  = jsonFormat7(AddReviewRequest)
-  implicit val AddReviewResponseFormat = jsonFormat2(AddReviewResponse)
+  implicit val AddReviewFormat   = jsonFormat6(AddReview)
+  implicit val AddResponseFormat = jsonFormat2(AddResponse.apply)
 
-  implicit val ListReviewRequestFormat  = jsonFormat1(ListReviewRequest)
+  implicit val ListReviewRequestFormat  = jsonFormat1(ListReview)
   implicit val ReviewFormat             = jsonFormat5(Review)
   implicit val ListReviewResponseFormat = jsonFormat5(ListReviewResponse)
 

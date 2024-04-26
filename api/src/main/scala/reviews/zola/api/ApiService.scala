@@ -34,10 +34,14 @@ trait ApiServiceT extends WebJsonSupportT
     path("add" / "review") {
       logRequestResult("add:review", Logging.InfoLevel) {
         post {
-          entity(as[AddReviewRequest]) { request =>
-            complete(StatusCodes.Created, {
-              (blogic ? request).mapTo[AddReviewResponse]
-            })
+          entity(as[AddReview]) { request =>
+            authenticateUser(request.username) { userId =>
+              complete(StatusCodes.Created, {
+                (blogic ? request.getServiceRequest(userId)).mapTo[AddReviewResponse]  map { x =>
+                  AddResponse.fromServiceResponse(x)
+                }
+              })
+            }
           }
         }
       }
@@ -45,10 +49,12 @@ trait ApiServiceT extends WebJsonSupportT
     path("list" / "review") {
       logRequestResult("list:review", Logging.InfoLevel) {
         post {
-          entity(as[ListReviewRequest]) { request =>
-            complete(StatusCodes.OK, {
-              (blogic ? request).mapTo[ListReviewResponse]
-            })
+          entity(as[ListReview]) { request =>
+            authenticateUser(request.username) { userId =>
+              complete(StatusCodes.OK, {
+                (blogic ? request.getServiceRequest(userId)).mapTo[ListReviewResponse]
+              })
+            }
           }
         }
       }

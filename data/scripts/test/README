@@ -1,0 +1,7 @@
+- get docker and run:
+docker deploy -c docker-compose.yml zola-test-service
+or 
+docker compose -f docker-compose.yml up -d
+- initialize the dbs:
+./deploy.sh
+

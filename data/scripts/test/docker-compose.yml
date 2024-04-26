@@ -1,0 +1,25 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql    
+    ports:
+       - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra-container
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_USER=admin
+      - CASSANDRA_PASSWORD=admin
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+
+volumes:
+  cassandra-data:
+    

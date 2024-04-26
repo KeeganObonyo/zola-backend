@@ -30,6 +30,7 @@ object Blogic {
       status: ServiceStatus.Value
     ) extends ZolaCCPrinter
     case class ListReviewRequest(
+      businessName: String,
       userId: Int
     ) extends ZolaCCPrinter
     case class Review(

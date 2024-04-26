@@ -17,7 +17,7 @@ trait WebJsonSupportT extends DefaultJsonProtocol with SprayJsonSupport {
   implicit val AddReviewFormat   = jsonFormat6(AddReview)
   implicit val AddResponseFormat = jsonFormat2(AddResponse.apply)
 
-  implicit val ListReviewRequestFormat  = jsonFormat1(ListReview)
+  implicit val ListReviewRequestFormat  = jsonFormat2(ListReview)
   implicit val ReviewFormat             = jsonFormat5(Review)
   implicit val ListReviewResponseFormat = jsonFormat5(ListReviewResponse)
 

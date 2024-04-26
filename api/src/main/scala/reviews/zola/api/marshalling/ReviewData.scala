@@ -40,9 +40,11 @@ object AddResponse {
 }
 
 private[api] case class ListReview(
-  username: String
+  username: String,
+  businessName: String
 ) extends ZolaCCPrinter {
   def getServiceRequest(userId: Int) = ListReviewRequest(
-    userId     = userId
+    userId       = userId,
+    businessName = businessName
   )
 }

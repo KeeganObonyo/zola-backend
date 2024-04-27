@@ -6,7 +6,7 @@ import reviews.zola._
 import core.util.{ ZolaCCPrinter, ZolaUtil, ZolaEnum }
 import ZolaEnum._
 
-import blogic.Blogic._
+import blogic.UserReviewService._
 
 private[api] case class AddReview(
     username: String,

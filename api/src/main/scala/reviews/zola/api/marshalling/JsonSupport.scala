@@ -9,7 +9,7 @@ import reviews.zola._
 
 import core.util.ZolaJsonProtocol
 
-import blogic.Blogic._
+import blogic.UserReviewService._
 
 trait WebJsonSupportT extends DefaultJsonProtocol with SprayJsonSupport {
   import ZolaJsonProtocol._
@@ -19,7 +19,7 @@ trait WebJsonSupportT extends DefaultJsonProtocol with SprayJsonSupport {
 
   implicit val ListReviewRequestFormat  = jsonFormat2(ListReview)
   implicit val ReviewFormat             = jsonFormat5(Review)
-  implicit val ListReviewResponseFormat = jsonFormat5(ListReviewResponse)
+  implicit val ListReviewResponseFormat = jsonFormat4(ListReviewResponse)
 
 }
 

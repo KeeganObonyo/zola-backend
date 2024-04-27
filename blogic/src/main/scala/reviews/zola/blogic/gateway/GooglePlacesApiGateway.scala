@@ -22,9 +22,11 @@ import core.http.ZolaHttpClientT
 import core.util.{ ZolaCCPrinter, ZolaUtil, ZolaConfig, ZolaEnum }
 import ZolaEnum.ServiceStatus
 
+import UserReviewService._
+
 import GooglePlacesApiGatewayMarshalling._
 
-private[gateway] object GooglePlacesApiGateway {
+private[blogic] object GooglePlacesApiGateway {
 
   case class FindPlaceIdRequest(
     businessName: String
@@ -38,15 +40,6 @@ private[gateway] object GooglePlacesApiGateway {
   case class FindPlaceDetailRequest(
     placeId: String
   ) extends ZolaCCPrinter
-
-  case class Review(
-    authorName: String,
-    rating: Int,
-    callback: Option[String],
-    textInfo: Option[String],
-    insertionTime: DateTime
-  ) extends ZolaCCPrinter
-
   case class FindPlaceDetailResponse(
     reviews: List[Review],
     status: ServiceStatus.Value,
@@ -55,7 +48,7 @@ private[gateway] object GooglePlacesApiGateway {
 
 }
 
-private[gateway] class GooglePlacesApiGateway extends Actor
+private[blogic] class GooglePlacesApiGateway extends Actor
     with ZolaHttpClientT
     with GooglePlacesApiGatewayJsonSupportT
     with ActorLogging {

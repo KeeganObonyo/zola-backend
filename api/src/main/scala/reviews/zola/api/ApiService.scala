@@ -14,7 +14,7 @@ import reviews.zola._
 
 import core.util.{ ZolaConfig, ZolaCoreServiceT }
 
-import blogic.Blogic
+import blogic.UserReviewService
 
 import marshalling._
 
@@ -26,10 +26,10 @@ trait ApiServiceT extends WebJsonSupportT
 
   implicit val timeout = Timeout(ZolaConfig.webRequestTimeout)
 
-  private val blogic = createBlogic
-  def createBlogic   = actorRefFactory.actorOf(Props[Blogic]())
+  private val userReviewService = createUserReviewService
+  def createUserReviewService   = actorRefFactory.actorOf(Props[UserReviewService]())
 
-  import Blogic._
+  import UserReviewService._
   lazy val route = {
     path("add" / "review") {
       logRequestResult("add:review", Logging.InfoLevel) {
@@ -37,7 +37,7 @@ trait ApiServiceT extends WebJsonSupportT
           entity(as[AddReview]) { request =>
             authenticateUser(request.username) { userId =>
               complete(StatusCodes.Created, {
-                (blogic ? request.getServiceRequest(userId)).mapTo[AddReviewResponse]  map { x =>
+                (userReviewService ? request.getServiceRequest(userId)).mapTo[AddReviewResponse]  map { x =>
                   AddResponse.fromServiceResponse(x)
                 }
               })
@@ -52,7 +52,7 @@ trait ApiServiceT extends WebJsonSupportT
           entity(as[ListReview]) { request =>
             authenticateUser(request.username) { userId =>
               complete(StatusCodes.OK, {
-                (blogic ? request.getServiceRequest(userId)).mapTo[ListReviewResponse]
+                (userReviewService ? request.getServiceRequest(userId)).mapTo[ListReviewResponse]
               })
             }
           }

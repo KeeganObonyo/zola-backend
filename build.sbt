@@ -46,7 +46,8 @@ lazy val core = (project in file("core")).
       "com.typesafe.akka"             %% "akka-testkit"             % akkaVersion      % Test,
       "org.scalatest"                 %% "scalatest"                % scalaTestVersion % Test,
       "org.scalatest"                 %% "scalatest-wordspec"       % scalaTestVersion % Test,
-      "org.scala-lang"                %  "scala-reflect"            % "2.12.19"
+      "org.scala-lang"                %  "scala-reflect"            % "2.12.19",
+      "mysql"                         %  "mysql-connector-java"     % "6.0.+"
     ),
   )
 

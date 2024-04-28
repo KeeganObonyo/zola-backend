@@ -43,7 +43,7 @@ private[blogic] object GooglePlacesApiGateway {
   case class FindPlaceDetailResponse(
     reviews: List[Review],
     status: ServiceStatus.Value,
-    rating: Option[Float]
+    rating: Option[Double]
   ) extends ZolaCCPrinter
 
 }
@@ -66,7 +66,7 @@ private[blogic] class GooglePlacesApiGateway extends Actor
     case req: FindPlaceIdRequest  =>
       log.info("processing " + req)
       val currentSender = sender
-      val BusinessName = req.businessName
+      val BusinessName = req.businessName.filterNot(_.isWhitespace)
       val url = s"$findPlacesUrl?fields=&input=$BusinessName&inputtype=textquery&key=$googlePlacesAPIKey"
 
       val http = HttpRequest(

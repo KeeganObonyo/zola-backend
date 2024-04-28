@@ -34,7 +34,7 @@ private[gateway] object GooglePlacesApiGatewayMarshalling {
 
   case class Result(
     name: String,
-    rating: Float,
+    rating: Double,
     reviews: List[GoogleReview]
   ) extends ZolaCCPrinter
 

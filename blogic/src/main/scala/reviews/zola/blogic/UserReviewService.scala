@@ -49,7 +49,7 @@ object UserReviewService {
       reviews: Option[List[Review]],
       businessName: String,
       status: ServiceStatus.Value,
-      rating: Option[Float]
+      rating: Option[Double]
     ) extends ZolaCCPrinter
 }
 
@@ -64,6 +64,8 @@ class UserReviewService extends Actor with ActorLogging {
   private val gateway  = createGateway
   def createGateway    = context.actorOf(Props[GooglePlacesApiGateway])
 
+  def retrieveTxId: String = java.util.UUID.randomUUID.toString
+
   import GooglePlacesApiGateway._
   import UserReviewCassandraDbService._
   import UserReviewService._
@@ -71,10 +73,9 @@ class UserReviewService extends Actor with ActorLogging {
     case req: AddReviewRequest           =>
       log.info("processing " + req)
       val currentSender = sender()
-      val uuid = java.util.UUID.randomUUID.toString
 
       (userReviewCassandraDbService ? UserReviewCreateDbQuery(
-        transactionId = uuid,
+        transactionId = retrieveTxId,
         userId        = req.userId,
         insertionTime = DateTime.now,
         rating        = req.rating,

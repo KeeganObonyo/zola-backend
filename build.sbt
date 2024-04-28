@@ -41,13 +41,13 @@ lazy val core = (project in file("core")).
       "commons-codec"                 %  "commons-codec"            % "1.16.1",
       "commons-daemon"                %  "commons-daemon"           % "1.3.4",
       "org.lz4"                       %  "lz4-java"                 % "1.4.1",
-      "ch.qos.logback"                %  "logback-core"             % "1.2.1",
-      "ch.qos.logback"                %  "logback-classic"          % "1.2.1",
+      "ch.qos.logback"                %  "logback-classic"          % "1.0.9",
       "com.typesafe.akka"             %% "akka-testkit"             % akkaVersion      % Test,
       "org.scalatest"                 %% "scalatest"                % scalaTestVersion % Test,
       "org.scalatest"                 %% "scalatest-wordspec"       % scalaTestVersion % Test,
       "org.scala-lang"                %  "scala-reflect"            % "2.12.19",
-      "mysql"                         %  "mysql-connector-java"     % "6.0.+"
+      "mysql"                         %  "mysql-connector-java"     % "6.0.+",
+      // "org.apache.logging.log4j"      %% "log4j-api-scala"          % "13.1.0"
     ),
   )
 

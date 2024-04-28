@@ -9,8 +9,8 @@ sudo chown -R keegan domains resources
 sudo chgrp -R admin domains resources
 
 cd domains/
-mkdir -p zola/web/20180813/bin
-mkdir -p zola/web/20180813/config
+mkdir -p zola/web/20240428/bin
+mkdir -p zola/web/20240428/config
 cd kulaba/web/
 ln -sf 20240423 current
 
@@ -45,4 +45,3 @@ zola@IP:/opt/domains/zola/data/scripts/startup/web.service zola-web.service
 
 sudo mv zola-web.service /etc/systemd/system/
 sudo systemctl enable zola-web
-																				 

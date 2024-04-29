@@ -1,5 +1,5 @@
 [Unit]
-Description=Zola-Web
+Description=Zola-Api
 After=network.target
 
 [Service]
@@ -12,10 +12,10 @@ Environment=MAX_HEAP=Xmx1024m
 Environment=PID=/run/zola/web.pid
 Environment=OUT_LOG=/var/log/zola/web/out.log
 Environment=ERR_LOG=/var/log/zola/web/err.log
-Environment=APP_CONFIG=/opt/domains/zola/web/current/config/application.conf
-Environment=APP_LOG_CONFIG=/opt/domains/zola/web/logback.xml
-Environment=APP_CLASSPATH=/opt/domains/zola/web/current/bin/web-assembly.jar
-Environment=APP_CLASS=zola.web.service.ApplicationDaemon
+Environment=APP_CONFIG=/opt/domains/zola/api/current/config/application.conf
+Environment=APP_LOG_CONFIG=/opt/domains/zola/api/logback.xml
+Environment=APP_CLASSPATH=/opt/domains/zola/api/current/bin/api-assembly.jar
+Environment=APP_CLASS=zola.api.service.ApplicationDaemon
 
 ExecStart=/opt/resources/utils/commons-daemon-1.3.4-src/src/native/unix/jsvc -home ${JAVA_HOME} -Djsse.enableSNIExtension=false -Dlogback.configurationFile=${APP_LOG_CONFIG} -Dconfig.file=${APP_CONFIG} -${MIN_HEAP} -${MAX_HEAP} -pidfile ${PID} -outfile ${OUT_LOG} -errfile ${ERR_LOG} -cp ${APP_CLASSPATH} ${APP_CLASS}
 

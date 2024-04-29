@@ -11,6 +11,10 @@ lazy val sharedSettings = Seq(
     "-feature",
     "-unchecked"
   ),
+  assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", _*) => MergeStrategy.discard
+  case _                        => MergeStrategy.first
+  }
 )
 
 lazy val zola = (project in file("."))
@@ -27,27 +31,26 @@ lazy val core = (project in file("core")).
       "com.typesafe.akka"             %% "akka-actor"               % akkaVersion,
       "com.typesafe.akka"             %% "akka-stream"              % akkaVersion,
       "com.typesafe.akka"             %% "akka-http-spray-json"     % akkaHttpVersion,
-      "com.typesafe.akka"             %% "akka-actor-testkit-typed" % "2.8.0"         % Test,
+      // "com.typesafe.akka"             %% "akka-actor-testkit-typed" % "2.8.0"         % Test,
       "com.typesafe.akka"             %% "akka-slf4j"               % akkaVersion,
       "org.slf4j"                     %  "slf4j-simple"             % "2.0.9",
       "org.scalikejdbc"               %% "scalikejdbc-async"        % "0.14.0",
-      "org.scalikejdbc"               %% "scalikejdbc-test"         % "4.2.1"         % "test",
-      "org.scalikejdbc"               %% "scalikejdbc-config"       % "4.2.1",
+      // "org.scalikejdbc"               %% "scalikejdbc-test"         % "4.2.1"         % "test",
+      // "org.scalikejdbc"               %% "scalikejdbc-config"       % "4.2.1",
       "com.github.jasync-sql"         %  "jasync-mysql"             % "2.2.+",
       "com.outworkers"                %% "phantom-dsl"              % "2.59.0",
       "com.outworkers"                %% "phantom-streams"          % "2.42.0",
-      "joda-time"                     %  "joda-time"                % "2.10.2", 
-      "org.joda"                      %  "joda-convert"             % "2.2.1",
-      "commons-codec"                 %  "commons-codec"            % "1.16.1",
+      // "joda-time"                     %  "joda-time"                % "2.10.2", 
+      // "org.joda"                      %  "joda-convert"             % "2.2.1",
       "commons-daemon"                %  "commons-daemon"           % "1.3.4",
       "org.lz4"                       %  "lz4-java"                 % "1.4.1",
-      "ch.qos.logback"                %  "logback-classic"          % "1.0.9",
+      "ch.qos.logback"                %  "logback-core"             % "1.2.1",
+      "ch.qos.logback"                %  "logback-classic"          % "1.2.1",
       "com.typesafe.akka"             %% "akka-testkit"             % akkaVersion      % Test,
       "org.scalatest"                 %% "scalatest"                % scalaTestVersion % Test,
       "org.scalatest"                 %% "scalatest-wordspec"       % scalaTestVersion % Test,
-      "org.scala-lang"                %  "scala-reflect"            % "2.12.19",
-      "mysql"                         %  "mysql-connector-java"     % "6.0.+",
-      // "org.apache.logging.log4j"      %% "log4j-api-scala"          % "13.1.0"
+      // "org.scala-lang"                %  "scala-reflect"            % "2.12.19",
+      "mysql"                         %  "mysql-connector-java"     % "6.0.+"
     ),
   )
 

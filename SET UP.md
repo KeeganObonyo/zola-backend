@@ -33,15 +33,15 @@ sudo chgrp -R admin /var/tmp/log/zola /var/log/zola /run/zola
 
 sudo echo "d /run/zola 0755 zola admin -" > /etc/tmpfiles.d/zola.conf
 
-cd /opt/domains/kulaba/web/current/bin
-scp zola@IP:/opt/domains/zola/web/target/scala-2.12/web-assembly-0.1.0.jar web-assembly.jar
+cd /opt/domains/zola/web/current/bin
+scp zola@IP:/opt/domains/zola/api/target/scala-2.12/api-assembly-0.1.0.jar api-assembly.jar
 cd /opt/domains/zola/web/current/config
 scp zola@IP:/opt/domains/zola/data/config/application.conf .
 scp zola@IP:/opt/domains/zola/data/config/prod.conf environment.conf
 
 cd /opt/domains/zola/web/
 scp zola@IP:/opt/domains/zola/data/config/web-logback.xml logback.xml
-zola@IP:/opt/domains/zola/data/scripts/startup/web.service zola-web.service
+zola@IP:/opt/domains/zola/data/scripts/startup/api.service zola-api.service
 
 sudo mv zola-web.service /etc/systemd/system/
-sudo systemctl enable zola-web
+sudo systemctl enable zola-api

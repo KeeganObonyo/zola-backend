@@ -18,7 +18,7 @@ CREATE TABLE `user` (
   `first_name` varchar(32) NOT NULL,
   `last_name` varchar(32) NOT NULL,
   `business_name` varchar(32) NOT NULL,
-  `api_key` varchar(64) NOT NULL,
+  `apikey` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `username` (`username`)

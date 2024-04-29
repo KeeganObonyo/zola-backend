@@ -1,2 +1,2 @@
-INSERT INTO `user` (`username`, `email`, `password`,`first_name`,`last_name`,`business_name`,`api_key`) VALUES ('testuser1','test@zola.com', SHA2('testpass1', 256),'name','name','zola','some_api_key');
-INSERT INTO `user` (`username`, `email`, `password`,`first_name`,`last_name`,`business_name`,`api_key`) VALUES ('testuser2','test@zola.com', SHA2('testpass2', 256),'name','name','zola','some_api_key');
+INSERT INTO `user` (`username`, `email`, `password`,`first_name`,`last_name`,`business_name`,`apikey`) VALUES ('testuser1','test@zola.com', SHA2('testpass1', 256),'name','name','zola','some_api_key');
+INSERT INTO `user` (`username`, `email`, `password`,`first_name`,`last_name`,`business_name`,`apikey`) VALUES ('testuser2','test@zola.com', SHA2('testpass2', 256),'name','name','zola','some_api_key');

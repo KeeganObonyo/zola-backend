@@ -33,7 +33,7 @@ class ApiServiceSpec extends AnyWordSpec
         Post("/add/review", HttpEntity(ContentType(MediaTypes.`application/json`), """{}""".toJson.toString)) ~> Route.seal(route) ~> check {
         assert(status === BadRequest)
         val res = responseAs[String]
-        assert(res.contains("""Object expected in field 'reviews'"""))
+        assert(res.contains("""Object expected in field 'username'"""))
         }
       }
     }
@@ -42,7 +42,7 @@ class ApiServiceSpec extends AnyWordSpec
         Post("/add/review", HttpEntity(ContentType(MediaTypes.`application/json`), """{}""".toJson.toString)) ~> Route.seal(route) ~> check {
         assert(status === BadRequest)
         val res = responseAs[String]
-        assert(res.contains("""Object expected in field 'reviews'"""))
+        assert(res.contains("""Object expected in field 'username'"""))
         }
       }
     }

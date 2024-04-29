@@ -23,12 +23,12 @@ case class APIUser(
 //Im the implementation. We only read the SQL tables for the Authentication.
 object APIUser extends SQLSyntaxSupport[APIUser] {
 
-    Class.forName(ZolaConfig.mysqlDriver)
-    val dbc: Connection = DriverManager.getConnection(ZolaConfig.mysqlDbUrl, ZolaConfig.mysqlDbUser, ZolaConfig.mysqlDbPass)
+val poolSettings = new ConnectionPoolSettings(initialSize = 100, maxSize = 100)
+ConnectionPool.singleton(ZolaConfig.mysqlDbUrl, ZolaConfig.mysqlDbUser, ZolaConfig.mysqlDbPass, poolSettings)
 
-  override val tableName = "api_user"
+  override val tableName = "user"
 
-  override val columns = Seq("id", "username", "api_key")
+  override val columns = Seq("id", "username", "apikey")
 
   def apply(m: ResultName[APIUser])(rs: WrappedResultSet): APIUser = new APIUser(
     id = rs.int(m.id),

@@ -14,7 +14,6 @@ CREATE TABLE user_review (
   author_name varchar,
   PRIMARY KEY (user_id, insertion_time, transaction_id)
 ) WITH CLUSTERING ORDER BY (insertion_time DESC);
-CREATE INDEX user_review_user_id ON user_review(user_id);
 CREATE INDEX user_review_rating ON user_review(rating);
 CREATE INDEX user_review_business_name ON user_review(business_name);
 CREATE INDEX user_review_author_name ON user_review(author_name);

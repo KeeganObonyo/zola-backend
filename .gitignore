@@ -16,3 +16,4 @@ project/**
 .bloop/
 .vscode
 .bsp
+UBUNTU.md

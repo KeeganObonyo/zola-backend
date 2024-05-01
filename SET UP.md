@@ -11,7 +11,7 @@ sudo chgrp -R admin domains resources
 cd domains/
 mkdir -p zola/web/20240428/bin
 mkdir -p zola/web/20240428/config
-cd kulaba/web/
+cd zola/web/
 ln -sf 20240423 current
 
 sudo yum install -y java-1.8.0-openjdk-devel.x86_64
@@ -43,5 +43,5 @@ cd /opt/domains/zola/web/
 scp zola@IP:/opt/domains/zola/data/config/web-logback.xml logback.xml
 zola@IP:/opt/domains/zola/data/scripts/startup/api.service zola-api.service
 
-sudo mv zola-web.service /etc/systemd/system/
+sudo mv zola-api.service /etc/systemd/system/
 sudo systemctl enable zola-api

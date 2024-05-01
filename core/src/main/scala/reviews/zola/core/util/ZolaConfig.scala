@@ -21,7 +21,7 @@ val config = ConfigFactory.load
   def getEnvironment : ZolaEnvironment.Value = environment match {
     case "dev"     => ZolaEnvironment.Development
     case "prod"    => ZolaEnvironment.Production
-    case x         => throw new Exception("Unexpected environment value: " + x)
+    case x         => ZolaEnvironment.Development
   }
 
   // API

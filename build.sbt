@@ -13,6 +13,7 @@ lazy val sharedSettings = Seq(
   ),
   assemblyMergeStrategy in assembly := {
   case PathList("META-INF", _*) => MergeStrategy.discard
+  case "reference.conf"         => MergeStrategy.concat
   case _                        => MergeStrategy.first
   }
 )

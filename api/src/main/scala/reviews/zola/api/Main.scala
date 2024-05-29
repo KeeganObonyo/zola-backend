@@ -7,6 +7,8 @@ import akka.http.scaladsl.Http
 import akka.io.IO
 import akka.stream.Materializer
 
+import akka.http.scaladsl._
+
 import reviews.zola._
 
 import core.util.{ ZolaConfig, ZolaLog, ApplicationLifecycle }

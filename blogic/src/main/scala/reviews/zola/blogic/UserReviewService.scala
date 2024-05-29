@@ -37,6 +37,16 @@ object UserReviewService {
       businessName: String,
       userId: Int
     ) extends ZolaCCPrinter
+    case class ListFeedBackRequest(
+      businessName: String,
+      userId: Int
+    ) extends ZolaCCPrinter
+    case class PlaceIdRequest(
+      businessName: String
+    ) extends ZolaCCPrinter
+    case class PlaceIdResponse(
+      placeId: String
+    ) extends ZolaCCPrinter
     case class Review(
       insertionTime: DateTime,
       rating: Int,
@@ -50,6 +60,11 @@ object UserReviewService {
       businessName: String,
       status: ServiceStatus.Value,
       rating: Option[Double]
+    ) extends ZolaCCPrinter
+    case class ListFeedBackResponse(
+      reviews: Option[List[Review]],
+      businessName: String,
+      status: ServiceStatus.Value
     ) extends ZolaCCPrinter
 }
 
@@ -70,6 +85,23 @@ class UserReviewService extends Actor with ActorLogging {
   import UserReviewCassandraDbService._
   import UserReviewService._
   def receive: Receive = {
+    case req: PlaceIdRequest             =>
+      log.info("processing " + req)
+      val currentSender = sender()
+      
+      (gateway ? FindPlaceIdRequest(
+        businessName  = req.businessName
+      )).mapTo[FindPlaceIdResponse] onComplete {
+        case Success(response) =>
+          currentSender ! PlaceIdResponse(
+            placeId  = response.placeId.get
+          )
+        case Failure(error)    =>
+          log.info(s"Error while retrieving place id + [$req] [$error]")
+          currentSender ! PlaceIdResponse(
+            placeId  = "Error"
+          )
+      }
     case req: AddReviewRequest           =>
       log.info("processing " + req)
       val currentSender = sender()
@@ -119,32 +151,13 @@ class UserReviewService extends Actor with ActorLogging {
           (gateway ? FindPlaceDetailRequest(
             placeId = response.placeId.get
           )).mapTo[FindPlaceDetailResponse] onComplete {
-            case Success(response) =>
-              val future        = {
-                for {
-                  lookupsIter  <- (userReviewCassandraDbService ? UserReviewFetchDbQuery(
-                    req.userId, None, 1000, None, None, None
-                  )).mapTo[Iterator[UserReviewDbEntry]]
-                  reviews       = lookupsIter.toList
-                } yield (reviews)
-              }
-              future onComplete {
-                case Success(reviews) =>
-                  currentSender ! ListReviewResponse(
-                    reviews       = Some(amalgamateReviews(Some(reviews),Some(response.reviews))),
-                    businessName  = req.businessName,
-                    status        = ServiceStatus.Success,
-                    rating        = response.rating
-                  )
-                case Failure(error)   =>
-                  log.info(s"Error while fetching results from Cassandra fowarding those from google $error")
-                  currentSender ! ListReviewResponse(
-                    reviews       = Some(amalgamateReviews(None,Some(response.reviews))),
-                    businessName  = req.businessName,
-                    status        = ServiceStatus.Success,
-                    rating        = response.rating
-                  )
-              }
+            case Success(response) =>  
+                currentSender ! ListReviewResponse(
+                  reviews       = Some(response.reviews),
+                  businessName  = req.businessName,
+                  status        = ServiceStatus.Success,
+                  rating        = response.rating
+                )
             case Failure(error)    =>
               log.info(s"Error while retrieving review data from Google [$error]")
               currentSender ! ListReviewResponse(
@@ -163,38 +176,46 @@ class UserReviewService extends Actor with ActorLogging {
             rating        = None
           )
       }
+  case req: ListFeedBackRequest        =>
+    log.info("processing " + req)
+    val currentSender = sender()
+    val future        = {
+      for {
+        lookupsIter  <- (userReviewCassandraDbService ? UserReviewFetchDbQuery(
+          req.userId, None, 1000, None, None, None
+        )).mapTo[Iterator[UserReviewDbEntry]]
+        reviews       = lookupsIter.toList
+      } yield (reviews)
+    }
+    future onComplete {
+      case Success(reviews) =>
+        currentSender ! ListFeedBackResponse(
+          reviews       = Some(dbEntryToReviews(reviews)),
+          businessName  = req.businessName,
+          status        = ServiceStatus.Success
+        )
+      case Failure(error)   =>
+        log.info(s"Error while fetching results from Cassandra")
+        currentSender ! ListFeedBackResponse(
+          reviews       = None,
+          businessName  = req.businessName,
+          status        = ServiceStatus.Success
+        )
+    }
   }
 
-  private def amalgamateReviews(
-        A: Option[List[UserReviewDbEntry]],
-        B: Option[List[Review]]
+  private def dbEntryToReviews(
+      dbEntryList: List[UserReviewDbEntry]
    ):List[Review] = {
-    (A,B) match {
-      case Tuple2(None, Some(y))    => y
-      case Tuple2(None, None)       => List[Review]()
-      case Tuple2(Some(x), None)    => 
-        for {
-            dbEntry <- x
-            review = Review(
-                authorName    = dbEntry.authorName,
-                rating        = dbEntry.rating,
-                textInfo      = dbEntry.textInfo,
-                callback      = dbEntry.callback,
-                insertionTime = dbEntry.insertionTime
-            )
-        } yield review
-      case Tuple2(Some(x), Some(y)) => 
-        val userReviewDbList = for {
-            dbEntry <- x
-            review = Review(
-                authorName    = dbEntry.authorName,
-                rating        = dbEntry.rating,
-                textInfo      = dbEntry.textInfo,
-                callback      = dbEntry.callback,
-                insertionTime = dbEntry.insertionTime
-            )
-        } yield review
-        userReviewDbList ::: y
-    }
+    for {
+        dbEntry <- dbEntryList
+        review = Review(
+            authorName    = dbEntry.authorName,
+            rating        = dbEntry.rating,
+            textInfo      = dbEntry.textInfo,
+            callback      = dbEntry.callback,
+            insertionTime = dbEntry.insertionTime
+        )
+    } yield review
   }
 }

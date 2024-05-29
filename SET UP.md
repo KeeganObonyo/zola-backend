@@ -5,7 +5,7 @@ sudo usermod -a -G admin zola
  
 cd /opt/
 sudo mkdir domains resources
-sudo chown -R keegan domains resources
+sudo chown -R zola domains resources
 sudo chgrp -R admin domains resources
 
 cd domains/

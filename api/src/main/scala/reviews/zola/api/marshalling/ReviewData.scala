@@ -48,3 +48,13 @@ private[api] case class ListReview(
     businessName = businessName
   )
 }
+
+private[api] case class ListFeedBack(
+  username: String,
+  businessName: String
+) extends ZolaCCPrinter {
+  def getServiceRequest(userId: Int) = ListFeedBackRequest(
+    userId       = userId,
+    businessName = businessName
+  )
+}

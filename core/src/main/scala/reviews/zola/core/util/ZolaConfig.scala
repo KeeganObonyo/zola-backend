@@ -51,4 +51,6 @@ val config = ConfigFactory.load
   val googlePlacesFindUrl   = config.getString("zola.googleplaces.api.place.url")
   val googlePlacesDetailUrl = config.getString("zola.googleplaces.api.detail.url")
   val googlePlacesAPIKey    = config.getString("zola.googleplaces.api.key")
+
+  val zolaKeyStore = config.getString("zola.key.store")
 }

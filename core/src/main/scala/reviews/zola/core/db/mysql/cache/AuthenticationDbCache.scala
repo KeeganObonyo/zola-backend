@@ -33,7 +33,7 @@ trait AuthenticationDbCacheT extends MysqlDbCacheManagerT with ZolaLog {
     apikey: String
   ): Option[APIUser] = authenticationMap.get(AuthKey(
     username = username.toLowerCase,
-    apikey   = ZolaUtil.sha256Hash(apikey)
+    apikey   = apikey
   ))
 
   def props = Props(classOf[AuthenticationDbCache], this)
